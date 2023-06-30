@@ -1,0 +1,24 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - echo "Instalando dependencias..."
+    - npm install
+
+unit-test-job:
+  stage: test
+  script:
+    - echo "Ejecutando pruebas..."
+    - npm test
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Construyendo la imagen de Docker..."
+    - docker build -t practicacicd .
+    - echo "Desplegando la aplicación en Docker..."
+    - docker run practicacicd
