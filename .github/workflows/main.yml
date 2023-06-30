@@ -1,24 +1,36 @@
-stages:
-  - build
-  - test
-  - deploy
+name: CI/CD Pipeline
 
-build-job:
-  stage: build
-  script:
-    - echo "Instalando dependencias..."
-    - npm install
+on:
+  push:
+    branches:
+      - main
 
-unit-test-job:
-  stage: test
-  script:
-    - echo "Ejecutando pruebas..."
-    - npm test
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
 
-deploy-job:
-  stage: deploy
-  script:
-    - echo "Construyendo la imagen de Docker..."
-    - docker build -t practicacicd .
-    - echo "Desplegando la aplicación en Docker..."
-    - docker run practicacicd
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build Docker image
+        run: docker build -t practicacicd .
+      - name: Run Docker container
+        run: docker run practicacicd
+
