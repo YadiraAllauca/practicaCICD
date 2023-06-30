@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD
 
 on:
   push:
@@ -8,29 +8,41 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
+
+      - name: Build
+        run: |
+          echo "Instalando dependencias..."
+          npm install
 
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test
+
+      - name: Test
+        run: |
+          echo "Ejecutando pruebas..."
+          npm test
 
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Build Docker image
-        run: docker build -t practicacicd .
-      - name: Run Docker container
-        run: docker run practicacicd
 
+      - name: Build Docker image
+        run: |
+          echo "Construyendo la imagen de Docker..."
+          docker build -t practicacicd .
+
+      - name: Deploy to Docker
+        run: |
+          echo "Desplegando la aplicación en Docker..."
+          docker run practicacicd
