@@ -26,6 +26,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set execute permissions for test file
+        run: |
+          cd practicacicd
+          chmod +x test/index.test.js
+
+      - name: Set execute permissions for node_modules/.bin/jest
+        run: |
+          cd practicacicd
+          chmod +x node_modules/.bin/jest
+
       - name: Test
         run: |
           echo "Ejecutando pruebas..."
