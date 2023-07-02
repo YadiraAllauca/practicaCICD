@@ -18,11 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd practicacicd
-          npm install
-      
-  test:
-    runs-on: ubuntu-latest
-    steps:
+          
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -41,9 +37,7 @@ jobs:
           echo "Ejecutando pruebas..."
           cd practicacicd
           npm test
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+          
       - name: Install Firebase CLI
         run: |
           cd practicacicd 
