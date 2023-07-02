@@ -15,6 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Authenticate with Firebase
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT_KEY" > "$HOME/serviceAccountKey.json"
+          npx firebase use --add --token="$(cat $HOME/serviceAccountKey.json)"
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+
       - name: Install dependencies
         run: |
           cd practicacicd
@@ -25,11 +32,8 @@ jobs:
           cd practicacicd
           npm install -g firebase-tools
 
-      - name: Authenticate with Firebase
-        run: |
-          firebase login:ci --no-localhost --token "$(cat $HOME/serviceAccountKey.json)"
-
       - name: Deploy to Firebase Hosting
         run: |
           cd practicacicd
-          firebase login:ci --no-localhost --token "$(cat $HOME/serviceAccountKey.json)"
+          firebase deploy --only hosting
+
