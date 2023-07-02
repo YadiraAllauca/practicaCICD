@@ -28,4 +28,4 @@ jobs:
       - name: Deploy to Firebase Hosting
         run: |
           cd practicacicd
-          firebase deploy --only hosting
+          npx firebase deploy --only hosting --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}
