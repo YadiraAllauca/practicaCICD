@@ -21,7 +21,11 @@ jobs:
           npm install
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: |
+          cd practicacicd
+          npm install -g firebase-tools
 
       - name: Deploy to Firebase Hosting
-        run: npx firebase deploy --only hosting --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}
+        run: |
+          cd practicacicd
+          firebase deploy --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}
