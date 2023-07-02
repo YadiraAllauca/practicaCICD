@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd practicadicd
+          cd practicacicd
           npm install
 
       - name: Install Firebase CLI
