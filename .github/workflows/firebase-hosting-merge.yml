@@ -27,8 +27,7 @@ jobs:
 
       - name: Authenticate with Firebase
         run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}" > $HOME/serviceAccountKey.json
-          firebase login:ci --no-localhost --token "$(cat $HOME/practicacicd/serviceAccountKey.json)"
+          firebase login:ci --no-localhost --token "$(cat $HOME/serviceAccountKey.json)"
 
       - name: Deploy to Firebase Hosting
         run: |
