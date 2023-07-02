@@ -17,7 +17,7 @@ jobs:
 
       - name: Authenticate with Firebase
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT_KEY" > "$HOME/serviceAccountKey.json"
+          cd practicacicd
           npx firebase use --add --token="$(cat $HOME/serviceAccountKey.json)"
         env:
           FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
