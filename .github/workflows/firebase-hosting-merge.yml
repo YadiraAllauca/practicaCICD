@@ -32,5 +32,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}'
           channelId: live
           projectId: facturamovil-cd677
-          entryPoint: 'practicacicd/firebase.json'
+          entryPoint: 'practicacicd'
 
