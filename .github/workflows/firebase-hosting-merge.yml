@@ -32,4 +32,4 @@ jobs:
       - name: Deploy to Firebase Hosting
         run: |
           cd practicacicd
-          firebase deploy --token ${{ secrets.FIREBASE_SERVICE_ACCOUNT_FACTURAMOVIL_CD677 }}
+          firebase login:ci --no-localhost --token "$(cat $HOME/serviceAccountKey.json)"
